@@ -1,0 +1,13 @@
+modules:
+  icmp_check:
+    prober: icmp
+    timeout: 30s
+    icmp:
+      preferred_ip_protocol: "ip4"
+  rtsp_check:
+    prober: tcp
+    timeout: 10s
+    tcp:
+      query_response:
+        - expect: "RTSP/1.0" # Espera que la cámara responda como servidor de video
+      preferred_ip_protocol: "ip4"
