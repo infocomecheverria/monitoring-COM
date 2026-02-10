@@ -20,14 +20,15 @@ def sync():
         col_ip = [c for c in df.columns if 'IPS' in c.upper() or 'IP' in c.upper()][0]
         col_nombre = [c for c in df.columns if 'NOMBRE CON ID' in c.upper()][0]
         col_mikrotik = [c for c in df.columns if 'MIKROTIK' in c.upper()][0]
+	col_torre = [c for c in df.columns if 'TORRES' in c.upper()][0]
+        col_carpeta = [c for c in df.columns if 'CARPETA DE VISUALIZACION' in c.upper()][0]
+
 
         print(f"Usando columna de IP: {col_ip}")
 
         targets_list = []
         for _, row in df.iterrows():
             ip = str(row[col_ip]).strip()
-            
-            # Filtro: Si la IP está vacía, es 'nan' o no tiene puntos, la saltamos
             if not ip or ip.lower() == 'nan' or '.' not in ip:
                 continue
 
@@ -39,6 +40,9 @@ def sync():
                 "labels": {
                     "nombre": nombre if nombre.lower() != 'nan' else f"Camara {ip}",
                     "mikrotik": mikrotik if mikrotik.lower() != 'nan' else "Sin Nodo",
+		    "torre": str(row[col_torre]).strip(),
+                    "carpeta": str(row[col_carpeta]).strip(),
+                    "job": "camaras_ping"
                 }
             })
 
