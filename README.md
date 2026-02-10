@@ -1,2 +1,2 @@
 # monitoring-COM
-Este stack esta pensado para nomitorear camaras activas e inactivas
+Este stack esta pensado para visualizar camaras activas e inactivas
